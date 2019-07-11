@@ -11,23 +11,25 @@ import UIKit
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var coinArray : [String] = []
-    var coinPrice : [Int] = []
-    var coinMarketCap: [Int] = []
+    var coinPrice : [Double] = []
+    var coinMarketCap: [Double] = []
     var coinLastUpdate: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        retrieveCoinData()
-        
-    
-
         coinPicker.delegate = self
         coinPicker.dataSource = self
-        coinPicker.reloadAllComponents()
+        
+        
+        
+
+            self.retrieveCoinData()
+            self.coinPicker.reloadAllComponents()
+        
         
     }
+    
     
 
     @IBOutlet weak var coinPicker: UIPickerView!
@@ -54,15 +56,14 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
                 for name in coinData.data {
                     print(name.name)
                     self.coinArray.append(name.name)
-                    self.coinPrice.append(Int(name.quote.USD.price))
-                    self.coinMarketCap.append(Int(name.quote.USD.market_cap))
+                    self.coinPrice.append(Double(name.quote.USD.price))
+                    self.coinMarketCap.append(Double(name.quote.USD.market_cap))
                     self.coinLastUpdate.append(name.quote.USD.last_updated)
                 }
                 
                 print(self.coinArray)
-                
-                
                 self.coinPicker.reloadAllComponents()
+                
             } catch let err {
                 print("Error", err)
             }
@@ -92,7 +93,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         lblCoinName.text = coinArray[row]
-        lblPrice.text = String(coinPrice[row]) + " Dollar"
+        let price = coinPrice[row]
+        lblPrice.text = "\(price) Dollar"
+
+        
         lblMarketCap.text = String(coinMarketCap[row]) + " Dollar (marketcap)"
         lblLastUpdate.text = coinLastUpdate[row]
     }
