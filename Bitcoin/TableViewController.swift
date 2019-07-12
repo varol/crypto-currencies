@@ -49,7 +49,7 @@ class TableViewController: UITableViewController {
     
     //TODO: JSON Parsing
     func retrieveCoinData(){
-        let url = URL(string: "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=aa934023-af5f-4c34-b54c-3ef83e4a9ece")!
+        let url = URL(string: "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?CMC_PRO_API_KEY=**********")!
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else {return}
             do {
