@@ -14,6 +14,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var coinLblSym: UILabel!
     @IBOutlet weak var coinLblMarketCap: UILabel!
     @IBOutlet weak var coinLblLastUpdate: UILabel!
+    @IBOutlet weak var coinLblChange1Hour: UILabel!
     
     
     override func awakeFromNib() {

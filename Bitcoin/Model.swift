@@ -40,4 +40,5 @@ struct USDCoin: Codable {
     let price: Double
     let last_updated : String
     let market_cap : Double
+    let percent_change_1h : Double
 }
